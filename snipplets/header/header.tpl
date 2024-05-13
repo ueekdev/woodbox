@@ -174,7 +174,7 @@
             {% endif %}
         </div>    
     </div>    
-    {% include "snipplets/notification.tpl" with {order_notification: true} %}
+    {# {% include "snipplets/notification.tpl" with {order_notification: true} %} #}
 </header>
 
 {# Show cookie validation message #}

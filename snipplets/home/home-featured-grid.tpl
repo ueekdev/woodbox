@@ -64,7 +64,15 @@
                     {% endfor %}
                 </div>
 
-                <a class="btn btn-primary" href="/produtos" title="Ver mais produtos">Ver mais produtos</a>
+                <a class="btn btn-primary {% if new_products %}accent{% endif %}" href="/produtos" title="Ver mais produtos">Ver mais produtos</a>
+
+                {% if new_products %}
+                    <div class="divider-woodbox">
+                        <div class="divider"></div>
+                        {{ "images/logo-small.svg" | static_url | img_tag("Logo Woodbox") }}
+                        <div class="divider"></div>
+                    </div>
+                {% endif %}
 
                 {# {% if use_slider %}
                         </div>

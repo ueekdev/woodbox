@@ -311,8 +311,7 @@ a {
   &:focus,
   &:active {
     color: #fff;
-    background: #E4B36C;
-    darken(#E4B36C, 10%)
+    background: darken(#E4B36C, 10%);
   }
 }
 .btn-secondary {

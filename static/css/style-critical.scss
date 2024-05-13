@@ -6884,3 +6884,24 @@ header.head-main.compress .logo-img-small {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+.divider-woodbox {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+
+  .divider {
+    background: #000;
+    height: 1px;
+    width: 100%;
+  }
+
+  img {
+    height: 35px;
+  }
+}
+
+.home-news {
+  margin-bottom: -20px !important;
+}
