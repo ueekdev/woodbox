@@ -1,4 +1,4 @@
-<div class="service-item-container" data-transition="fade-in-up">
+<div class="banner-service-item" data-transition="fade-in-up">
         {% if banner_services_url %}
             <a href="{{ banner_services_url | setting_url }}">
         {% endif %}
@@ -23,7 +23,7 @@
                 <svg class="icon-inline icon-7x svg-icon-text mb-3"><use xlink:href="#cash-big"/></svg>
             {% endif %}
             {% if banner_services_title %}
-                <h3 class="h4 mb-3">{{ banner_services_title }}</h3>
+                <h3 >{{ banner_services_title }}</h3>
             {% endif %}
             {% if banner_services_description %}
                 <p class="m-0">{{ banner_services_description }}</p>

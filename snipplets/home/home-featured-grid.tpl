@@ -36,62 +36,65 @@
 {% endif %}
 
 <div class="container-fluid">
-    <div class="row">
-        
-        {% if section_title %}
-            <div class="col-12 text-center">
-                <div class="section-title">
-                    <h2 class="h5 mb-1">{{ section_title }}</h2>
-                </div>
-            </div>
-        {% endif %}
-        <div class="col-12 {% if use_slider %}p-0{% else %}pl-0{% endif %}">
-            {% if use_slider %}
-                <div class="js-swiper-{% if featured_products %}featured{% elseif new_products %}new{% else %}sale{% endif %} swiper-container">
-                    <div class="swiper-wrapper">
-            {% else %}
-                <div class="row">
-            {% endif %}
-
-            {% for product in sections_products %}
-                {% if use_slider %}
-                    {% include 'snipplets/grid/item.tpl' with {'slide_item': true, 'section_name': section_name} %}
-                {% else %}
-                    {% include 'snipplets/grid/item.tpl' %}
-                {% endif %}
-            {% endfor %}
-
-            {% if use_slider %}
+    <div class="container">
+        <div class="row">
+            
+            {% if section_title %}
+                <div class="col-12 text-center mt-3 px-0">
+                    <div class="section-title">
+                        <h2 class="mb-3">{{ section_title }}</h2>
+                        <p>Explore nossas coleções onde a autenticidade é celebrada</p>
                     </div>
                 </div>
-            {% else %}
-                </div>
+            {% endif %}
+            <div class="col-12 {% if use_slider %}p-0{% else %}pl-0{% endif %}">
+                {% if use_slider %}
+                    <div class="js-swiper-{% if featured_products %}featured{% elseif new_products %}new{% else %}sale{% endif %} swiper-container">
+                        <div class="swiper-wrapper">
+                {% else %}
+                    <div class="row">
+                {% endif %}
+
+                {% for product in sections_products %}
+                    {% if use_slider %}
+                        {% include 'snipplets/grid/item.tpl' with {'slide_item': true, 'section_name': section_name} %}
+                    {% else %}
+                        {% include 'snipplets/grid/item.tpl' %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if use_slider %}
+                        </div>
+                    </div>
+                {% else %}
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if show_help %}
+                {% for i in 1..4 %}
+                    {% if loop.index % 4 == 1 %}
+                        <div class="grid-row">
+                    {% endif %}
+
+                    <div class="span3">
+                        <div class="item">
+                            <div class="item-image-container">
+                                <a href="/admin/products/new" target="_top">{{'placeholder-product.png' | static_url | img_tag}}</a>
+                            </div>
+                            <div class="item-info-container">
+                                <div class="title"><a href="/admin/products/new" target="_top">{{"Producto" | translate}}</a></div>
+                                <div class="price">{{"$0.00" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if loop.index % 4 == 0 or loop.last %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         </div>
-
-        {% if show_help %}
-            {% for i in 1..4 %}
-                {% if loop.index % 4 == 1 %}
-                    <div class="grid-row">
-                {% endif %}
-
-                <div class="span3">
-                    <div class="item">
-                        <div class="item-image-container">
-                            <a href="/admin/products/new" target="_top">{{'placeholder-product.png' | static_url | img_tag}}</a>
-                        </div>
-                        <div class="item-info-container">
-                            <div class="title"><a href="/admin/products/new" target="_top">{{"Producto" | translate}}</a></div>
-                            <div class="price">{{"$0.00" | translate}}</div>
-                        </div>
-                    </div>
-                </div>
-
-                {% if loop.index % 4 == 0 or loop.last %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
     </div>
 </div>
 

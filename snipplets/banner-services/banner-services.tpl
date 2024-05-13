@@ -38,7 +38,13 @@
 
     <div class="container-fluid banner-services">
         <div class="container">
-            {{ banner_services.for_each_banner_include('snipplets/banner-services/banner-services-item.tpl') }}
+            <div class="services-grid">
+                {{ banner_services.for_each_banner_include('snipplets/banner-services/banner-services-item.tpl') }}
+                <div class="banner-service-item" data-transition="fade-in-up">
+                    <iconify-icon icon="fa-regular:smile"></iconify-icon>
+                    <h3>Presentes<br>personalizáveis</h3>
+                </div>
+            </div>
         </div>
     </div>
 {% endif %}

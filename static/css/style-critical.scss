@@ -4247,7 +4247,11 @@ header.head-main.compress .logo-img-small {
 /* // Sections title */
 
 .section-title {
-  padding: 40px 0;
+  padding: 50px 0;
+
+  p {
+    color: var(--footer-foreground);
+  }
 }
 
 /* // Video */
@@ -6789,5 +6793,69 @@ header.head-main.compress .logo-img-small {
 
   .w-md-auto {
     width: auto !important
+  }
+}
+
+// UEEK
+
+.banner-services {
+  background: #FFF;
+  box-shadow: 10px 10px 44px 0px rgba(0, 0, 0, 0.06);
+  padding-top: 45px;
+  padding-bottom: 45px;
+
+  .services-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .banner-service-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 220px;
+
+    iconify-icon {
+      color: var(--accent-color);
+      font-size: 41px;
+    }
+
+    h3 {
+      color: #221D1A;
+      font-size: 20px;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @media(max-width: 1400px) {
+    .services-grid {
+      gap: 80px;
+    }
+  }
+
+  @media(max-width: 1200px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+    }
+  }
+
+  @media(max-width: 768px) {
+    .banner-service-item {
+      width: 100%;
+    }
+
+    .services-grid {
+      gap: 20px;
+
+      iconify-icon {
+        font-size: 24px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+    }
   }
 }
