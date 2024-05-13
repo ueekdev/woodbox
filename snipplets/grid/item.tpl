@@ -15,7 +15,8 @@
 {% if slide_item %}
     <div class="swiper-slide">
 {% endif %}
-    <div class="js-item-product{% if slide_item %} js-item-slide p-0{% endif %}{% if not slide_item %} col-{% if columns_mobile == 1 %}12{% elseif columns_mobile == 2 %}6{% else %}4{% endif %} col-md-{% if columns_desktop == 2 %}6{% elseif columns_desktop == 3 %}4{% else %}3{% endif %}{% endif %} item item-product grid-item" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}" data-component="product-list-item" data-component-value="{{ product.id }}" data-transition="fade-in-up">
+    {# <div class="js-item-product{% if slide_item %} js-item-slide p-0{% endif %} item item-product grid-item" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}" data-component="product-list-item" data-component-value="{{ product.id }}" data-transition="fade-in-up"> #}
+    <div class="js-item-product{% if slide_item %} js-item-slide p-0{% endif %}" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}" data-component="product-list-item" data-component-value="{{ product.id }}" data-transition="fade-in-up">
         {% if settings.quick_shop or settings.product_color_variants %}
             <div class="js-product-container js-quickshop-container{% if product.variations %} js-quickshop-has-variants{% endif %} position-relative" data-variants="{{ product.variants_object | json_encode }}" data-quickshop-id="quick{{ product.id }}">
         {% endif %}

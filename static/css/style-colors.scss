@@ -1189,7 +1189,6 @@ input[type=number] {
 .section-featured-home {
   position: relative;
   @extend %element-margin;
-  border-top: 1px solid var(--main-foreground-opacity-10);
 }
 
 /*============================================================================
@@ -1229,9 +1228,6 @@ input[type=number] {
     color: var(--main-foreground);
   }
 
-  &-price {
-    color: var(--main-foreground);
-  }
 
   &-colors {
     background: var(--main-background-opacity-90);
@@ -1251,6 +1247,7 @@ input[type=number] {
 .label {
   background: var(--main-foreground);
   color: var(--main-background);
+  font-family: var(--price-font);
 
   &.label-primary {
     background: var(--accent-color);
@@ -1263,8 +1260,8 @@ input[type=number] {
   }
 
   &.label-accent {
-    background: var(--label-background);
-    color: var(--label-foreground);
+    background: var(--accent-color);
+    color: #fff;
   }
 }
 

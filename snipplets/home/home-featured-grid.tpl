@@ -37,7 +37,6 @@
 
 <div class="container-fluid">
     <div class="container">
-        <div class="row">
             
             {% if section_title %}
                 <div class="col-12 text-center mt-3 px-0">
@@ -48,27 +47,31 @@
                 </div>
             {% endif %}
             <div class="col-12 {% if use_slider %}p-0{% else %}pl-0{% endif %}">
-                {% if use_slider %}
+                {# {% if use_slider %}
                     <div class="js-swiper-{% if featured_products %}featured{% elseif new_products %}new{% else %}sale{% endif %} swiper-container">
                         <div class="swiper-wrapper">
                 {% else %}
                     <div class="row">
-                {% endif %}
+                {% endif %} #}
 
-                {% for product in sections_products %}
-                    {% if use_slider %}
-                        {% include 'snipplets/grid/item.tpl' with {'slide_item': true, 'section_name': section_name} %}
-                    {% else %}
-                        {% include 'snipplets/grid/item.tpl' %}
-                    {% endif %}
-                {% endfor %}
+                <div class="product-grid">
+                    {% for product in sections_products %}
+                        {% if use_slider %}
+                            {% include 'snipplets/grid/item.tpl' with {'slide_item': true, 'section_name': section_name} %}
+                        {% else %}
+                            {% include 'snipplets/grid/item.tpl' %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
-                {% if use_slider %}
+                <a class="btn btn-primary" href="/produtos" title="Ver mais produtos">Ver mais produtos</a>
+
+                {# {% if use_slider %}
                         </div>
                     </div>
                 {% else %}
                     </div>
-                {% endif %}
+                {% endif %} #}
             </div>
 
             {% if show_help %}
@@ -95,7 +98,6 @@
                 {% endfor %}
             {% endif %}
         </div>
-    </div>
 </div>
 
 {% if use_slider %}

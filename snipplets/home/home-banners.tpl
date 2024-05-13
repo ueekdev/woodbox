@@ -9,12 +9,12 @@
         </section>
     {% endif %}
     {% if has_banner_promotional %}
-        <section class="section-banners-home position-relative" data-store="home-banner-promotional">
+        <section class="section-banners-home position-relative home-promotional" data-store="home-banner-promotional">
             {% include 'snipplets/home/home-banners-grid.tpl' with {'banner_promotional': true} %}
         </section>
     {% endif %}
     {% if has_banner_news %}
-        <section class="section-banners-home position-relative" data-store="home-banner-news">
+        <section class="section-banners-home position-relative home-news" data-store="home-banner-news">
             {% include 'snipplets/home/home-banners-grid.tpl' with {'banner_news': true} %}
         </section>
     {% endif %}

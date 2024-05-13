@@ -1129,6 +1129,22 @@ footer {
 
 .section-banners-home {
   @extend %element-margin;
+
+  &.home-promotional,
+  &.home-news {
+    img {
+      height: 100% !important;
+      object-fit: cover;
+    }
+  }
+
+  &.home-promotional {
+    height: 283px;
+  }
+
+  &.home-news {
+    height: 370px;
+  }
 }
 
 /* // Instafeed */
