@@ -47,23 +47,28 @@
 					</p>
 				</div>
 
-				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', submit_custom_class: 'btn-block',
+				<div class="login-form-container flex justify-content-start">
+					<p class="title">Sua conta</p>
+				</div>
+
+				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', form_custom_class:
+				'login-form-container', submit_custom_class: 'btn-block',
 				submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
 				{% block form_body %}
 
 				{# Name input #}
 
 				{% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_value:
-				result.email, input_name: 'email', input_custom_class: 'js-account-input', input_label_text: 'Email' |
-				translate, input_required: true } %}
+				result.email, input_name: 'email', input_custom_class: 'js-account-input', input_required: true,
+				input_placeholder: 'Email' | translate } %}
 				{% endembed %}
 
 				{# Password input #}
 
 				{% embed "snipplets/forms/form-input.tpl" with{input_for: 'password', type_password: true, input_name:
 				'password', input_custom_class: 'js-account-input', input_help: true, input_help_link:
-				store.customer_reset_password_url, input_link_class: 'btn-link-primary float-right mb-4 mt-3n',
-				input_label_text: 'Contraseña' | translate, input_required: true } %}
+				store.customer_reset_password_url, input_link_class: 'btn-link-primary bold float-left mb-5 mt-3n',
+				input_required: true, input_placeholder: 'Senha' | translate } %}
 
 				{% block input_help_text %}{{ '¿Olvidaste tu contraseña?' | translate }}{% endblock input_help_text %}
 
@@ -77,8 +82,8 @@
 				{% endblock %}
 				{% endembed %}
 				{% if 'mandatory' not in store.customer_accounts %}
-				<p class="mt-3 text-center"> {{ "¿No tenés cuenta aún?" | translate }} {{ "Crear cuenta" | translate |
-					a_tag(store.customer_register_url, '', 'btn-link-primary') }}</p>
+				<p class="mt-3 text-center">{{ "Crear cuenta" | translate |
+					a_tag(store.customer_register_url, '', 'btn-link btn-link-primary bold') }}</p>
 				{% endif %}
 			</div>
 		</div>

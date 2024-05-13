@@ -1569,12 +1569,12 @@ es_mx "La página que buscas no existe."
 --- --- Login
 
 es "Iniciá sesión"
-pt "Iniciar sessão"
+pt "Entrar"
 en "Log in"
 es_mx "Inicia sesión"
 
 es "Iniciar sesión"
-pt "Iniciar sessão"
+pt "Entrar"
 en "Log in"
 es_mx "Iniciar sesión"
 
@@ -2315,7 +2315,7 @@ en "We found another account using this e-mail. Try with another one."
 es_mx "Encontramos otra cuenta asociada a este correo. Intenta utilizando otro."
 
 es "Vamos a enviarte un email para que puedas cambiar tu contraseña."
-pt "Vamos te enviar um e-mail para poder alterar a sua senha."
+pt "Iremos enviar um e-mail com um link de redefinição para você alterar sua senha."
 en "We will send you an e-mail so you can change your password."
 es_mx "Vamos a enviarte un correo para que modifiques tu contraseña."
 

@@ -378,17 +378,28 @@ h6,
   }
 
   &-primary {
-    padding: 16px 25px;
-    background-color: #E4B36C;
+    padding: 18px 25px;
+    background-color: #C9987C;
     border-radius: 30px;
     color: #fff;
     fill: #fff;
+    font-weight: 600;
+
+    &.accent {
+      background: #682A00;
+
+      &:hover,
+      &:focus {
+        background-color: darken(#682A00, 10%);
+
+      }
+    }
 
     &:hover,
     &:focus {
       color: #fff;
       fill: #fff;
-      background-color: darken(#E4B36C, 10%);
+      background-color: darken(#C9987C, 10%);
       opacity: 1;
     }
   }
@@ -539,6 +550,13 @@ a {
   color: var(--main-foreground);
   fill: var(--main-foreground);
   cursor: pointer;
+  font-family: var(--price-font);
+  font-size: 14px;
+  line-height: normal;
+
+  &.bold {
+    font-weight: 600;
+  }
 
   &.toggled {
     color: var(--accent-color);
@@ -557,13 +575,13 @@ a {
   }
 
   &-primary {
-    color: var(--accent-color);
-    fill: var(--accent-color);
+    color: #C9987C;
+    fill: #C9987C;
 
     &:hover,
     &:focus {
-      color: var(--accent-color);
-      fill: var(--accent-color);
+      color: #C9987C;
+      fill: #C9987C;
       opacity: 0.5;
     }
   }
@@ -660,6 +678,10 @@ textarea {
     &+.form-select-icon {
       fill: var(--main-foreground);
     }
+  }
+
+  &::placeholder {
+    color: #7A7A7A;
   }
 
   &:focus {
@@ -1665,8 +1687,8 @@ footer {
   .form-control,
   .form-select,
   .form-quantity {
-    padding: 10px;
-    font-size: 12px;
+    padding: 15px 16px;
+    font-size: 14px;
   }
 
   /* Slider */
@@ -1754,4 +1776,20 @@ footer {
 
 .login-page {
   margin-top: 100px;
+}
+
+.login-form-container {
+  margin: 0 auto;
+  max-width: 325px;
+
+  .title {
+    // font-family: var(--other-title-font);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+}
+
+.text-gray {
+  color: #C1C1C1;
 }
