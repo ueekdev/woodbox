@@ -296,6 +296,10 @@ body {
 
   h1,
   .h1 {
+    font-family: var(--main-title-font);
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 100%;
     margin-bottom: 0;
   }
 }
@@ -1792,4 +1796,8 @@ footer {
 
 .text-gray {
   color: #C1C1C1;
+
+  p {
+    color: #C1C1C1;
+  }
 }
