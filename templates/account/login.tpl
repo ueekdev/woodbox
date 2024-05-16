@@ -52,7 +52,8 @@
 				</div>
 
 				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', form_custom_class:
-				'login-form-container', submit_custom_class: 'btn-block',
+				'login-form-container d-flex align-items-center flex-column justify-content-center',
+				submit_custom_class: 'btn-block',
 				submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
 				{% block form_body %}
 
@@ -67,7 +68,7 @@
 
 				{% embed "snipplets/forms/form-input.tpl" with{input_for: 'password', type_password: true, input_name:
 				'password', input_custom_class: 'js-account-input', input_help: true, input_help_link:
-				store.customer_reset_password_url, input_link_class: 'btn-link-primary bold float-left mb-5 mt-3n',
+				store.customer_reset_password_url, input_link_class: 'btn-link-primary bold float-left mb-3 mt-3n',
 				input_required: true, input_placeholder: 'Senha' | translate } %}
 
 				{% block input_help_text %}{{ '¿Olvidaste tu contraseña?' | translate }}{% endblock input_help_text %}

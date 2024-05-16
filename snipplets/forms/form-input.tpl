@@ -66,7 +66,12 @@
             %}aria-label="{{ input_aria_label }}" {% endif %} {% if input_required %}required{% endif %} {% if
             data_component %}data-component="{{ data_component }}" {% endif %} />
         {% if type_password %}
-        <a aria-label="{{ 'Ver contraseña' | translate }}" class="js-password-view btn form-toggle-eye">
+        <a aria-label="{{ 'Ver contraseña' | translate }}" class="js-password-view btn form-toggle-eye" style="padding: 0;
+        margin: 0;
+        width: auto;
+        height: fit-content;
+        top: 15px;
+        right: 20px;">
             <span class="js-eye-open" style="display: none;">
                 <svg class="icon-inline svg-icon-text">
                     <use xlink:href="#eye" />
