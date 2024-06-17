@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col pl-0">
-				<div class="js-product-table row">
+				<div class="js-product-table products-grid">
 					{% include "snipplets/svg/empty-placeholders.tpl" %}
 					{% include 'snipplets/defaults/help_item.tpl' with {'help_item_1': true} %}
 					{% include 'snipplets/defaults/help_item.tpl' with {'help_item_2': true} %}

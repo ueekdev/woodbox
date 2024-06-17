@@ -53,7 +53,8 @@
 
     {% if has_featured_shipping %}
 
-        <div class="form-label form-label-divider">
+        <div class="form-label form-label-divider form-label-ship">
+        <iconify-icon icon="bi:truck"></iconify-icon>
             {{ "Envío a domicilio" | translate }}
         </div>
 
@@ -99,7 +100,8 @@
 
     {% if has_featured_pickup %}
 
-        <div class="form-label form-label-divider">
+        <div class="form-label form-label-divider form-label-ship">
+        <iconify-icon icon="bi:truck"></iconify-icon>
             {{ "Retirar por" | translate }}
         </div>
 

@@ -34,15 +34,7 @@
 
   {# Cart popup subtotal #}
 
-  <div class="js-visible-on-cart-filled row h6 mb-1" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
-    <span {% if not cart_page %}class="col-7"{% endif %}>
-      {{ "Subtotal" | translate }}
-      
-      <small class="js-subtotal-shipping-wording" {% if not (cart.has_shippable_products or show_calculator_on_cart) %}style="display: none"{% endif %}>{{ " (sin envío)" | translate }}</small>
-      :
-    </span>
-    <span class="js-ajax-cart-total js-cart-subtotal {% if not cart_page %}col{% endif %} text-right" data-priceraw="{{ cart.subtotal }}" data-component="cart.subtotal" data-component-value={{ cart.subtotal }}>{{ cart.subtotal | money }}</span>
-  </div>
+  
 
   {# Cart popup promos #}
 
@@ -92,9 +84,9 @@
         <div class="js-fulfillment-info js-allows-non-shippable" {% if not cart.has_shippable_products %}style="display: none"{% endif %}>
         
           {% if not cart_page %}
-            <div class="js-visible-on-cart-filled divider" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
+            <div class="js-visible-on-cart-filled " {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
           {% endif %}
-            <div class="js-visible-on-cart-filled js-has-new-shipping js-shipping-calculator-container">
+            <div class="js-visible-on-cart-filled js-has-new-shipping js-shipping-calculator-container cart-shadow">
 
               {# Saved shipping not available #}
 
@@ -206,7 +198,6 @@
             </span>
           </h5>
         {% endif %}
-        <div class="divider"></div>
   {% endif %}
 
       {# Cart page and popup total #}
@@ -231,7 +222,7 @@
           }}
 
           {% if not settings.payment_discount_price %}
-            {{ component('installments', {'location': 'cart', container_classes: { installment: "mt-2 text-right"}}) }}
+            {{ component('installments', {'location': 'cart', container_classes: { installment: "mt-2 text-right installments-text-preview"}}) }}
           {% endif %}
         </div>
       </div>
@@ -248,7 +239,7 @@
 
           {% if cart.checkout_enabled %}
             <div class="row mb-3">
-              <input id="go-to-checkout" class="btn btn-primary btn-block" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}"/>
+              <input id="go-to-checkout" class="btn btn-primary " type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}"/>
             </div>
           {% else %}
 

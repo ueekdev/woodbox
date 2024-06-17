@@ -192,6 +192,10 @@ body {
   font-family: var(--body-font);
   background-color: var(--main-background);
   @extend %body-font;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .box {
@@ -275,12 +279,12 @@ body {
 
   .separator {
     margin: 3px;
-    opacity: 0.6;
+    opacity: 1;
   }
 
   .crumb {
     line-height: 14px;
-    opacity: 0.6;
+    opacity: 1;
 
     &.active {
       opacity: 1;
@@ -301,6 +305,15 @@ body {
     font-weight: 300;
     line-height: 100%;
     margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+
+    h1,
+    .h1 {
+      font-size: 34px;
+    }
+
   }
 }
 
@@ -437,12 +450,22 @@ h6,
     }
   }
 
+  &.inline {
+    color: #E4B36C;
+    font-weight: bold;
+    font-size: 16px;
+
+    &:hover {
+      color: #C9987C;
+    }
+  }
+
   &-block {
     width: 100%;
   }
 
   &-medium {
-    padding: 8px;
+    padding: 12px;
   }
 
   &-small {
@@ -450,7 +473,7 @@ h6,
     padding: 5px 10px;
     font-size: 8px;
     line-height: 10px;
-    letter-spacing: 1px;
+
   }
 
   &-variant {
@@ -551,11 +574,11 @@ a {
 }
 
 .btn-link {
-  color: var(--main-foreground);
-  fill: var(--main-foreground);
+  color: var(--footer-foreground);
+  fill: var(--footer-foreground);
   cursor: pointer;
   font-family: var(--price-font);
-  font-size: 14px;
+  font-size: 16px;
   line-height: normal;
 
   &.bold {
@@ -662,9 +685,9 @@ textarea {
 .form-quantity {
   display: block;
   width: 100%;
-  padding: 6px 15px;
-  font-family: var(--price-font);
+  padding: 15px 16px;
   font-size: 14px;
+  font-family: var(--price-font);
   line-height: 16px;
   border: 1px solid var(--main-foreground-opacity-30);
   @extend %border-radius;
@@ -756,29 +779,29 @@ input[type=number] {
 
 /* IOS form CSS to avoid autozoom on focus */
 
-.form-control-ios,
-.form-group-quantity-ios .form-control-ios {
-  /* enlarge by 16/12 = 133.33% */
-  font-size: 16px;
-  line-height: 26.666666667px;
-  width: 133.333333333%;
+// .form-control-ios,
+// .form-group-quantity-ios .form-control-ios {
+//   /* enlarge by 16/12 = 133.33% */
+//   font-size: 16px;
+//   line-height: 26.666666667px;
+//   width: 133.333333333%;
 
-  /* scale down by 12/16 = 75% */
-  transform: scale(0.75);
-  transform-origin: left top;
+//   /* scale down by 12/16 = 75% */
+//   transform: scale(0.75);
+//   transform-origin: left top;
 
-  &+.form-toggle-eye {
-    bottom: 10px;
-  }
-}
+//   &+.form-toggle-eye {
+//     bottom: 10px;
+//   }
+// }
 
-.form-group-quantity-ios {
-  padding: 0 10px;
+// .form-group-quantity-ios {
+//   padding: 0 10px;
 
-  .form-control-ios {
-    padding-top: 8px;
-  }
-}
+//   .form-control-ios {
+//     padding-top: 8px;
+//   }
+// }
 
 .cart-quantity-container-ios {
   height: 22px;
@@ -792,7 +815,7 @@ input[type=number] {
   cursor: pointer;
 
   &.btn {
-    font-size: 10px;
+    font-size: 13px;
 
     &.btn-medium {
       padding: 6px 8px;
@@ -837,11 +860,12 @@ input[type=number] {
 .checkbox-container {
   .checkbox-icon {
     background: var(--main-background);
-    border: 1px solid var(--main-foreground);
+    border: 1px solid var(--footer-foreground);
 
     &:after {
       border: solid var(--accent-color);
       border-width: 0 1px 1px 0;
+      transition: all 0.2s ease;
     }
   }
 
@@ -1323,10 +1347,6 @@ input[type=number] {
   @extend %element-margin;
 }
 
-.section-products-related {
-  border-top: 1px solid var(--main-foreground-opacity-10);
-}
-
 /*============================================================================
   #Contact page
 ==============================================================================*/
@@ -1688,12 +1708,6 @@ footer {
 
   /* Forms */
 
-  .form-control,
-  .form-select,
-  .form-quantity {
-    padding: 15px 16px;
-    font-size: 14px;
-  }
 
   /* Slider */
 
@@ -1784,7 +1798,10 @@ footer {
 
 .login-form-container {
   margin: 0 auto;
-  max-width: 325px;
+
+  @media(min-width: 1200px) {
+    max-width: 325px;
+  }
 
   .title {
     // font-family: var(--other-title-font);
@@ -1795,9 +1812,20 @@ footer {
 }
 
 .text-gray {
-  color: #C1C1C1;
+  color: var(--footer-foreground);
+
+  img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+  }
 
   p {
-    color: #C1C1C1;
+    color: var(--footer-foreground);
+
+    span {
+      display: block;
+      width: 100%;
+    }
   }
 }

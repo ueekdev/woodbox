@@ -1,5 +1,5 @@
-<div class="js-accordion-container js-toggle-shipping mb-3">
-    <a href="#" class="js-accordion-toggle py-1 row">
+<div class="js-accordion-container js-toggle-shipping {% if product_detail %} mb-3{% endif %}">
+    {# <a href="#" class="js-accordion-toggle py-1 row">
         <div class="col">
         	<svg class="icon-inline icon-w svg-icon-text mr-1"><use xlink:href="#truck"/></svg>
             <span class="subtitle">{{ 'Medios de envío' | translate }}</span>
@@ -13,7 +13,7 @@
             </span>
         </div>
     </a>
-    <div class="js-accordion-content" style="display: none;">
+    <div class="js-accordion-content" style="display: none;"> #}
 
 		{# Check if store has free shipping without regions or categories #}
 
@@ -51,7 +51,7 @@
 
 		{% set has_free_shipping_bar = has_free_shipping and cart.free_shipping.min_price_free_shipping.min_price_raw > 0 and not product_detail %}
 
-		<div class="mt-1 mb-2" data-store="shipping-calculator">
+		<div class="shipping-options" data-store="shipping-calculator">
 			<div class="js-shipping-calculator-head shipping-calculator-head position-relative transition-soft {% if cart_zipcode %}with-zip{% else %}with-form{% endif %} {% if free_shipping_messages_visible %}with-free-shipping{% endif %}">
 				<div class="js-shipping-calculator-with-zipcode {% if cart_zipcode %}js-cart-saved-zipcode transition-up-active{% endif %} mb-4 w-100 transition-up position-absolute mt-2">
 					{% if free_shipping_messages_visible %}
@@ -81,17 +81,13 @@
 						</div>
 
 					{% endif %}
-					<div class="container p-0">
-						<div class="row align-items-center">
-							<span class="col pr-0">
-								<span class=" align-bottom">
-									<span>{{ "Entregas para el CP:" | translate }}</span>
-									<strong class="js-shipping-calculator-current-zip">{{ cart_zipcode }}</strong>
-								</span>
+					<div class=" p-0">
+						<div class="d-flex align-items-center justify-content-between flex-wrap">
+							<span class="cep-delivery align-bottom">
+								<span>{{ "Entregas para el CP:" | translate }}</span>
+								<strong class="js-shipping-calculator-current-zip">{{ cart_zipcode }}</strong>
 							</span>
-							<div class="col-auto pl-0">
-								<a class="js-shipping-calculator-change-zipcode btn btn-secondary  float-right" href="#">{{ "Cambiar CP" | translate }}</a>
-							</div>
+							<a class="js-shipping-calculator-change-zipcode btn {% if product_detail %} btn-primary accent {% else %} inline {% endif %}" href="#">{{ "Cambiar CP" | translate }}</a>
 						</div>
 					</div>
 				</div>
@@ -126,9 +122,10 @@
 							<div class="position-relative col-12">
 						{% endblock input_prepend_content %}
 						{% block input_append_content %}
-								<button class="js-calculate-shipping btn btn-secondary btn-block" aria-label="{{ 'Calcular envío' | translate }}">	
+								<button class="js-calculate-shipping btn btn-primary calculate-button " aria-label="{{ 'Calcular envío' | translate }}">	
 									<span class="js-calculate-shipping-wording">
-										<svg class="icon-inline btn-icon svg-icon-text"><use xlink:href="#plus"/></svg>
+										{# <svg class="icon-inline btn-icon svg-icon-text"><use xlink:href="#plus"/></svg> #}
+										<iconify-icon icon="ep:right"></iconify-icon>
 									</span>
 									<span class="float-right loading" style="display: none;">
 										<svg class="icon-inline btn-icon icon-spin svg-icon-text"><use xlink:href="#spinner-third"/></svg>
@@ -185,7 +182,7 @@
 			</div>
 			<div class="js-shipping-calculator-response transition-soft {% if product_detail %}list {% else %} radio-buttons-group{% endif %}" style="display: none;"></div>
 		</div>
-	</div>
+	{# </div> #}
 </div>
 
 {# Shipping country modal #}

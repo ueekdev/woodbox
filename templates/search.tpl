@@ -16,7 +16,7 @@
 			<h2 class="h6 mt-2 mb-4">
 				{{ "Mostrando los resultados para" | translate }}<span class="ml-2">"{{ query }}"</span>
 			</h2>
-			<div class="js-product-table row">
+			<div class="js-product-table products-grid">
 				{% include 'snipplets/product_grid.tpl' %}
 			</div>
 			{% if pages.current == 1 and not pages.is_last %}

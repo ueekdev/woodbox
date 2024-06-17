@@ -366,7 +366,13 @@ button {
   border: 1px solid;
   text-align: center;
   font-size: 11px;
+  font-family: var(--price-font);
   @extend %element-margin;
+
+  @media(min-width: 1200px) {
+    padding: 13px 10px;
+    font-size: 15px;
+  }
 }
 
 .notification-hidden {
@@ -694,7 +700,7 @@ button {
       font-size: 10px;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      
     }
   }
 }
@@ -885,7 +891,7 @@ button {
 
   .footer-menu-link {
     text-transform: uppercase;
-    letter-spacing: 1px;
+    
   }
 }
 
@@ -1034,7 +1040,6 @@ button {
 
 footer {
   margin-top: 20px;
-  padding-top: 40px;
 
   &.section-footer-home {
     @extend %section-margin-invert;
@@ -1081,8 +1086,8 @@ footer {
 .footer-payments-shipping-logos {
   img {
     width: auto;
-    max-height: 25px;
-    margin: 5px;
+    max-height: 20px;
+    margin: 4px;
   }
 }
 
@@ -2423,7 +2428,22 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 ==============================================================================*/
 
 .contact-page {
+  padding-top: 80px;
   @extend %section-margin;
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 35% auto;
+    gap: 50px;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 40px;
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 .contact-item {
@@ -2564,10 +2584,10 @@ body:not(.is-using-mouse) .fancybox__container :focus {
   .filters-sidebar .filter-input-price-container {
     width: calc(50% - 25px);
 
-    .filter-input-price {
-      padding: 6px;
-      font-size: 11px;
-    }
+    // .filter-input-price {
+  //   padding: 6px;
+  //   font-size: 11px;
+  // }
   }
 
 

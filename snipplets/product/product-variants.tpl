@@ -1,11 +1,11 @@
-<div class="js-product-variants {% if quickshop %}js-product-quickshop-variants mb-3{% endif %} form-row pt-2">
+<div class="js-product-variants variants-list {% if quickshop %}js-product-quickshop-variants mb-3{% endif %}">
 	{% set has_size_variations = false %}
 	{% if settings.bullet_variants %}
 		{% set hidden_variant_select = ' d-none' %}
 	{% endif %}
 	{% for variation in product.variations %}
 
-		<div class="js-product-variants-group {% if variation.name in ['Color', 'Cor'] %}js-color-variants-container{% endif %} {% if quickshop %}col-12 {% else %} col-12 {% if settings.bullet_variants %}mb-2{% else %}{% if loop.length == 3 %} col-md-4 {% else %} col-md-6{% endif %}{% endif %}{% endif %}" data-variation-id="{{ variation.id }}">
+		<div class="js-product-variants-group {% if variation.name in ['Color', 'Cor'] %}js-color-variants-container{% endif %}" data-variation-id="{{ variation.id }}">
 			{% if quickshop %}
 				{% embed "snipplets/forms/form-select.tpl" with{select_label: true, select_label_name: '' ~ variation.name ~ '', select_for: 'variation_' ~ loop.index , select_id: 'variation_' ~ loop.index, select_name: 'variation' ~ '[' ~ variation.id ~ ']', select_group_custom_class: 'form-group-small mb-2' ~ hidden_variant_select, select_custom_class: 'js-variation-option js-refresh-installment-data form-control-small', select_label_custom_class:'mb-1'} %}
 					{% block select_options %}
@@ -24,11 +24,9 @@
 				{% endembed %}
 			{% endif %}
 			{% if settings.bullet_variants %}
-				<div class="row">
-					<div class="col-auto">
-						<label class="form-label d-inline-block mt-2">{{ variation.name }}</label>
-					</div>
-					<div class="col pl-0">
+				<div class="variation-item">
+					<label class="form-label d-inline-block">{{ variation.name }}</label>
+					<div class="variations">
 						{% for option in variation.options if option.custom_data %}
 							<a data-option="{{ option.id }}" class="js-insta-variant btn btn-variant{% if product.default_options[variation.id] == option.id %} selected{% endif %}" title="{{ option.name }}" data-option="{{ option.id }}" data-variation-id="{{ variation.id }}">
 								<span class="btn-variant-content"{% if variation.name in ['Color', 'Cor'] %} style="background: {{ option.custom_data }}; border: 1px solid #eee"{% endif %} data-name="{{ option.name }}">

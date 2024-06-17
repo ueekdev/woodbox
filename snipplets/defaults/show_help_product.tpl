@@ -145,7 +145,7 @@
                             {% endembed %}
                         </div>
                         <div class="col-8">
-                            <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mb-4 cart" value="{{ 'Agregar al carrito' | translate }}" />
+                            <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary  mb-4 cart" value="{{ 'Agregar al carrito' | translate }}" />
                         </div>
                     </div>
 

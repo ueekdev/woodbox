@@ -6,14 +6,14 @@
 
 {# Product price #}
 
-<div class="price-container mb-3 row" data-store="product-price-{{ product.id }}">
-    <div class="col">
+<div class="price-container mb-3 " data-store="product-price-{{ product.id }}">
+    <div class="price-group">
         {% set price_big_class = settings.payment_discount_price ? 'font-big' %}
         <span class="d-inline-block {{ price_big_class }}">
-           <div id="compare_price_display" class="js-compare-price-display price-compare" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</div>
+            <div id="compare_price_display" class="js-compare-price-display price-compare" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</div>
         </span>
         <span class="d-inline-block {{ price_big_class }}">
-        	<div class="js-price-display" id="price_display" {% if not product.display_price %}style="display:none;"{% endif %} data-product-price="{{ product.price }}">{% if product.display_price %}{{ product.price | money }}{% endif %}</div>
+            <div class="js-price-display" id="price_display" {% if not product.display_price %}style="display:none;"{% endif %} data-product-price="{{ product.price }}">{% if product.display_price %}{{ product.price | money }}{% endif %}</div>
         </span>
         {{ component('payment-discount-price', {
                 visibility_condition: settings.payment_discount_price,
@@ -22,14 +22,65 @@
             }) 
         }}
     </div>
-    {% if settings.product_detail_installments %}
+    {# {% if settings.product_detail_installments %}
         <div class="col-auto">
             {{ component('installments', {'location' : 'product_detail', container_classes: { installment: "item-installments"}}) }}
         </div>
+    {% endif %} #}
+
+    {# Product installments #}
+
+    {% set installments_info = product.installments_info_from_any_variant %}
+    {% set hasDiscount = product.maxPaymentDiscount.value > 0 %}
+    {% set show_payments_info = settings.product_detail_installments and product.show_installments and product.display_price and installments_info %}
+
+    {% if show_payments_info or hasDiscount %}
+
+        {# If product detail installments, include container with "see installments" link #}
+
+        <div class="js-accordion-container mb-3">
+            {# <a href="#" class="js-accordion-toggle py-1 row">
+                <div class="col">
+                    <svg class="icon-inline icon-w svg-icon-text mr-1"><use xlink:href="#credit-card"/></svg>
+                    <span class="subtitle">{{ 'Medios de pago' | translate }}</span>
+                </div>
+                <div class="col-auto">
+                    <span class="js-accordion-toggle-inactive">
+                        <svg class="icon-inline svg-icon-text icon-rotate-90"><use xlink:href="#chevron"/></svg>
+                    </span>
+                    <span class="js-accordion-toggle-active" style="display: none;">
+                        <svg class="icon-inline svg-icon-text icon-rotate-90-neg"><use xlink:href="#chevron"/></svg>
+                    </span>
+                </div>
+            </a> #}
+            {# <div class="js-accordion-content pt-3" style="display: none;"> #}
+                <div {% if installments_info %}data-toggle="#installments-modal" data-modal-url="modal-fullscreen-payments"{% endif %} class="{% if installments_info %}js-modal-open js-fullscreen-modal-open{% endif %} js-product-payments-container " {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
+
+                    {# Installments #}
+
+                    {% if show_payments_info %}
+                        {% set max_installments_without_interests = product.get_max_installments(false) %}
+                        {% set installments_without_interests = max_installments_without_interests and max_installments_without_interests.installment > 1 %}
+                        {% set installment_text_color = installments_without_interests ? 'text-accent' : '' %}
+                        {{ component('installments', {'location' : 'product_detail', container_classes: { installment: " " ~ installment_text_color}}) }}
+                    {% endif %}
+
+                    {# Max Payment Discount #}
+
+                    {% if hasDiscount %}
+                       
+                            <span class="text-accent">{{ product.maxPaymentDiscount.value }}% {{'de descuento' | translate }}</span> {{'pagando con' | translate }} {{ product.maxPaymentDiscount.paymentProviderName }}
+                       
+                    {% endif %}
+
+                    <a id="btn-installments" class="btn-link " {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
+                        Ver meios de pagamento
+                    </a>
+                </div>
+            {# </div> #}
+        </div>
     {% endif %}
 </div>
-
-<div class="divider"></div>
 
 {# Promotional text #}
 
@@ -69,100 +120,11 @@
         </div>
     {% endif %}
 
-    <div class="form-row mb-2">
-        {% if show_product_quantity %}
-            {% include "snipplets/product/product-quantity.tpl" %}
-        {% endif %}
-        {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
-        {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}
-        <div class="{% if show_product_quantity %}col-8{% else %}col-12{% endif %}">
+   
 
-            {% if settings.product_stock and not settings.quantity_input and product.available and product.display_price %}
-                {% include "snipplets/product/product-stock.tpl" with {custom_class: "pb-3"} %}
-            {% endif %}
-
-            {# Add to cart CTA #}
-
-            <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mb-4 {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} data-store="product-buy-button" data-component="product.add-to-cart"/>
-
-            {# Fake add to cart CTA visible during add to cart event #}
-
-            {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "mb-4"} %}
-
-        </div>
-
-        {% if settings.ajax_cart %}
-            <div class="col-12">
-                <div class="js-added-to-cart-product-message " style="display: none;">
-                    <svg class="icon-inline icon-lg svg-icon-text mr-2 d-table float-left"><use xlink:href="#check"/></svg>
-                    <span>
-                        {{'Ya agregaste este producto.' | translate }}<a href="#" class="js-modal-open js-open-cart js-fullscreen-modal-open btn-link float-right subtitle ml-1" data-toggle="#modal-cart" data-modal-url="modal-fullscreen-cart">{{ 'Ver carrito' | translate }}</a>
-                    </span>
-                    <div class="divider"></div>
-                </div>
-            </div>
-        {% endif %}
-    </div>
-
-    {# Product installments #}
-
-    {% set installments_info = product.installments_info_from_any_variant %}
-    {% set hasDiscount = product.maxPaymentDiscount.value > 0 %}
-    {% set show_payments_info = settings.product_detail_installments and product.show_installments and product.display_price and installments_info %}
-
-    {% if show_payments_info or hasDiscount %}
-
-        {# If product detail installments, include container with "see installments" link #}
-
-        <div class="js-accordion-container mb-3">
-            <a href="#" class="js-accordion-toggle py-1 row">
-                <div class="col">
-                    <svg class="icon-inline icon-w svg-icon-text mr-1"><use xlink:href="#credit-card"/></svg>
-                    <span class="subtitle">{{ 'Medios de pago' | translate }}</span>
-                </div>
-                <div class="col-auto">
-                    <span class="js-accordion-toggle-inactive">
-                        <svg class="icon-inline svg-icon-text icon-rotate-90"><use xlink:href="#chevron"/></svg>
-                    </span>
-                    <span class="js-accordion-toggle-active" style="display: none;">
-                        <svg class="icon-inline svg-icon-text icon-rotate-90-neg"><use xlink:href="#chevron"/></svg>
-                    </span>
-                </div>
-            </a>
-            <div class="js-accordion-content pt-3" style="display: none;">
-                <div {% if installments_info %}data-toggle="#installments-modal" data-modal-url="modal-fullscreen-payments"{% endif %} class="{% if installments_info %}js-modal-open js-fullscreen-modal-open{% endif %} js-product-payments-container row mb-4" {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
-
-                    {# Installments #}
-
-                    {% if show_payments_info %}
-                        {% set max_installments_without_interests = product.get_max_installments(false) %}
-                        {% set installments_without_interests = max_installments_without_interests and max_installments_without_interests.installment > 1 %}
-                        {% set installment_text_color = installments_without_interests ? 'text-accent' : '' %}
-                        {{ component('installments', {'location' : 'product_detail', container_classes: { installment: "col-12 mb-2 " ~ installment_text_color}}) }}
-                    {% endif %}
-
-                    {# Max Payment Discount #}
-
-                    {% if hasDiscount %}
-                        <span class="col-12 mb-2">
-                            <span class="text-accent">{{ product.maxPaymentDiscount.value }}% {{'de descuento' | translate }}</span> {{'pagando con' | translate }} {{ product.maxPaymentDiscount.paymentProviderName }}
-                        </span>
-                    {% endif %}
-
-                    <a id="btn-installments" class="btn-link  col mt-1" {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
-                        <span class="d-table">
-                            {% if not hasDiscount and not settings.product_detail_installments %}
-                                <svg class="icon-inline icon-lg svg-icon-primary mr-1"><use xlink:href="#credit-card"/></svg>
-                            {{ "Ver medios de pago" | translate }}
-                                {% else %}
-                                {{ "Ver más detalles" | translate }}
-                            {% endif %}
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+{# {% if show_product_quantity %} #}
+    {% include "snipplets/product/product-quantity.tpl" %}
+{# {% endif %} #}
 
     {# Define contitions to show shipping calculator and store branches on product page #}
 
@@ -185,6 +147,35 @@
 
     {% endif %}
 
+    {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
+    {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}
+    <div class="{% if show_product_quantity %}col-8{% else %}col-12{% endif %}">
+
+        {% if settings.product_stock and not settings.quantity_input and product.available and product.display_price %}
+            {% include "snipplets/product/product-stock.tpl" with {custom_class: "pb-3"} %}
+        {% endif %}
+
+        {# Add to cart CTA #}
+
+        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} data-store="product-buy-button" data-component="product.add-to-cart"/>
+
+        {# Fake add to cart CTA visible during add to cart event #}
+
+        {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "mb-4"} %}
+
+    </div>
+
+    {% if settings.ajax_cart %}
+        <div class="col-12">
+            <div class="js-added-to-cart-product-message " style="display: none;">
+                <svg class="icon-inline icon-lg svg-icon-text mr-2 d-table float-left"><use xlink:href="#check"/></svg>
+                <span>
+                    {{'Ya agregaste este producto.' | translate }}<a href="#" class="js-modal-open js-open-cart js-fullscreen-modal-open btn-link float-right subtitle ml-1" data-toggle="#modal-cart" data-modal-url="modal-fullscreen-cart">{{ 'Ver carrito' | translate }}</a>
+                </span>
+                <div class="divider"></div>
+            </div>
+        </div>
+    {% endif %}
  </form>
 
 {# Product payments details #}

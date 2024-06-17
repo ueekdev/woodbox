@@ -2,13 +2,13 @@
 
 {% if show_cookie_banner and not params.preview %}
     <div class="js-notification js-notification-cookie-banner notification notification-fixed-bottom {% if settings.show_tab_nav %}notification-fixed-bottom-with-tabnav{% endif %} notification-above notification-primary text-left" style="display: none;">
-        <div class="container-fluid p-0">
+        <div class="container-fluid py-3">
             <div class="row justify-content-center align-items-center">
                 <div class="col col-md-auto pr-0">
                     <div class="">{{ 'Al navegar por este sitio <strong>aceptás el uso de cookies</strong> para agilizar tu experiencia de compra.' | translate }}</div>
                 </div>
                 <div class="col-auto">
-                    <a href="#" class="js-notification-close js-acknowledge-cookies btn btn-secondary " data-amplitude-event-name="cookie_banner_acknowledge_click">{{ "Entendido" | translate }}</a>
+                    <a href="#" class="js-notification-close js-acknowledge-cookies btn btn-primary btn-medium " data-amplitude-event-name="cookie_banner_acknowledge_click">{{ "Entendido" | translate }}</a>
                 </div>
             </div>
         </div>

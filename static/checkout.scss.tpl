@@ -639,7 +639,7 @@ a {
   font-size: 8px;
   font-weight: normal;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  
   border-bottom: 1px solid rgba($foreground-color, .1);
 }
 .panel-footer {
@@ -770,7 +770,7 @@ a {
   border-radius: $box-radius;
   font-size: 8px;
   line-height: 10px;
-  letter-spacing: 1px;
+  
   text-transform: uppercase;
 
   .btn-link {
@@ -814,7 +814,7 @@ a {
   .text-semi-bold {
     font-size: 10px;
     font-weight: 400;
-    letter-spacing: 1px;
+    
   }
 }
 
@@ -959,7 +959,7 @@ a {
 .payment-category-label {
   font-size: 8px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  
 
   &.text-semi-bold {
     font-weight: normal;
@@ -976,7 +976,7 @@ a {
   background: $label-background;
   border-radius: 6px;
   font-size: 8px;
-  letter-spacing: 1px;
+  
   text-transform: uppercase;
 }
 

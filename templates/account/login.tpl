@@ -52,8 +52,7 @@
 				</div>
 
 				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', form_custom_class:
-				'login-form-container d-flex align-items-center flex-column justify-content-center',
-				submit_custom_class: 'btn-block',
+				'login-form-container', submit_custom_class: '',
 				submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
 				{% block form_body %}
 
@@ -76,8 +75,7 @@
 				{% endembed %}
 
 				{% if result.invalid %}
-				<div class="notification-centered notification-danger">{{ 'Estos datos no son correctos. ¿Chequeaste que
-					estén bien escritos?' | translate }}</div>
+				<div class="notification-centered notification-danger">Credenciais inválidas! Cheque o e-mail e a senha informada.</div>
 				{% endif %}
 
 				{% endblock %}

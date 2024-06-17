@@ -28,9 +28,9 @@
         {# Filters list #}
 
         <div id="filters" class="visible-when-content-ready" data-store="filters-nav">
-            {% if not modal %}
+            {# {% if not modal %}
                 <h5 class="title-section mb-2 d-none d-md-block">{{ "Filtrar por" | translate }}</h5>
-            {% endif %}
+            {% endif %} #}
             {% for product_filter in product_filters %}
                 {% if product_filter.type == 'price' %}
 
@@ -41,7 +41,7 @@
                     {% endif %}
                     {{ component(
                         'price-filter',
-                        {'group_class': 'price-filter-container', 'title_class': 'mb-3 mt-4 subtitle', 'button_class': 'btn btn-secondary  ' ~  btn_price_classes }
+                        {'group_class': 'price-filter-container', 'title_class': 'h3', 'button_class': 'btn btn-secondary  ' ~  btn_price_classes }
                     ) }}
 
                     <div class="divider mt-3 pt-2"></div>
@@ -50,7 +50,7 @@
                     {% if product_filter.has_products %}
                     
                         <div class="js-accordion-container" data-store="filters-group" data-component="list.filter-{{ product_filter.type }}" data-component-value="{{ product_filter.key }}">
-                            <div class="mb-3 mt-4 subtitle">{{product_filter.name}}</div>
+                            <h3 class="">{{product_filter.name}}</h3>
                             {% set index = 0 %}
                             {% for value in product_filter.values %}
                                 {% if value.product_count > 0 %}

@@ -1,33 +1,14 @@
 {% set show_thumbs = not settings.scroll_product_images and (product.images_count > 1 or product.video_url) %}
-<div class="row" data-store="product-image-{{ product.id }}"> 
-	{% if show_thumbs %}
+<div class="product-gallery-composition" data-store="product-image-{{ product.id }}"> 
+	{# {% if show_thumbs %}
 		<div class="col-2 d-none d-md-block">
-
-			{# If product has more than 5 images truncate thumbs #}
 			
-			{% if product.images_count > 5 %}
-				{% for image in product.images | take(5) %}
-					{% include 'snipplets/product/product-image-thumb.tpl' with {last_open_modal: true} %}
-				{% endfor %}
-			{% else %}
-				{% for image in product.images %}
-					{% include 'snipplets/product/product-image-thumb.tpl' %}
-				{% endfor %}
-			{% endif %}
-
-			{# Video thumb #}
-
-			{% if product.images_count > 5 %}
-				<div class="mt-2">
-			{% endif %}
-					{% include 'snipplets/product/product-video.tpl' with {thumb: true} %}
-			{% if product.images_count > 5 %}
-				</div>
-			{% endif %}
+			
 		</div>
-	{% endif %}
+	{% endif %} #}
+	{% include 'snipplets/breadcrumbs.tpl' %}
 	{% if product.images_count > 0 %}
-		<div class="product-image-container {% if show_thumbs %}col-12 col-md-10{% else %}col-12{% endif %} p-0">
+		<div class="product-image-container ">
 			<div class="js-swiper-product{% if settings.scroll_product_images %} product-detail-slider{% endif %} swiper-container" style="visibility:hidden; height:0;" data-product-images-amount="{{ product.images_count }}">
 				{% include 'snipplets/labels.tpl' with {'product_detail': true} %}
 			    <div class="swiper-wrapper">
@@ -46,4 +27,26 @@
 			{% snipplet 'placeholders/product-detail-image-placeholder.tpl' %}
 		</div>
 	{% endif %}
+
+	<div class="images-preview">
+		{% if product.images_count > 5 %}
+			{% for image in product.images | take(5) %}
+				{% include 'snipplets/product/product-image-thumb.tpl' with {last_open_modal: true} %}
+			{% endfor %}
+		{% else %}
+			{% for image in product.images %}
+				{% include 'snipplets/product/product-image-thumb.tpl' %}
+			{% endfor %}
+		{% endif %}
+
+		{# Video thumb #}
+
+		{% if product.images_count > 5 %}
+			<div class="mt-2">
+		{% endif %}
+				{% include 'snipplets/product/product-video.tpl' with {thumb: true} %}
+		{% if product.images_count > 5 %}
+			</div>
+		{% endif %}
+	</div>
 </div>

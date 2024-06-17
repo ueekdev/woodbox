@@ -13,11 +13,11 @@
                 <div class="d-none d-md-block">
             {% endif %}
                     {% if modal %}
-                        <div class="mb-3 subtitle">{{ "Categorías" | translate }}</div>
+                        <h3 class="">{{ "Categorías" | translate }}</h3>
                     {% endif %}
-                    <ul class="js-accordion-container list-unstyled"> 
+                    <ul class="js-accordion-container list-links-filter list-unstyled"> 
                         {% for category in filter_categories %}
-                            <li data-item="{{ loop.index }}" class="mb-3"><a href="{{ category.url }}" title="{{ category.name }}" class="btn-link">{{ category.name }}</a></li>
+                            <li data-item="{{ loop.index }}" ><a href="{{ category.url }}" title="{{ category.name }}" class="btn-link">{{ category.name }}</a></li>
 
                             {% if loop.index == 8 and filter_categories | length > 8 %}
                                 <div class="js-accordion-content" style="display: none;">

@@ -33,7 +33,7 @@
                 <div class="alert alert-danger">{{ 'Las contraseñas no coinciden.' | translate }}</div>
                 {% endif %}
 
-                {% embed "snipplets/forms/form.tpl" with{form_id: 'newpass-form', submit_custom_class: 'btn-block',
+                {% embed "snipplets/forms/form.tpl" with{form_id: 'newpass-form', submit_custom_class: '',
                 submit_text: (customer.password ? 'Cambiar contraseña' : 'Activar cuenta') | translate } %}
                 {% block form_body %}
 

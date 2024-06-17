@@ -45,7 +45,7 @@
         {% if settings.products_related_title %}
             <div class="col-12 text-center">
                 <div class="section-title">
-                    <h2 class="h5 mb-1">{{ settings.products_related_title }}</h2>
+                    <h2 class="mb-1">{{ settings.products_related_title }}</h2>
                 </div>
             </div>
         {% endif %}

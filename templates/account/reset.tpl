@@ -21,7 +21,7 @@
                 {% endif %}
 
                 {% embed "snipplets/forms/form.tpl" with{form_id: 'resetpass-form', form_custom_class:
-                'login-form-container', submit_custom_class: 'btn-block',
+                'login-form-container', submit_custom_class: '',
                 submit_text: 'Enviar email' | translate } %}
                 {% block form_body %}
 

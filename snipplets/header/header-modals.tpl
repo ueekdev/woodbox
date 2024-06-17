@@ -59,18 +59,19 @@
 
 {# Modal Cart #}
 
-{% if settings.show_tab_nav %}
+{# {% if settings.show_tab_nav %}
 	{% set modal_cart_position_mobile_val = 'bottom' %}
 {% else %}
 	{% set modal_cart_position_mobile_val = 'right' %}
-{% endif %}
+{% endif %} #}
 
 {% if not store.is_catalog and settings.ajax_cart and template != 'cart' %}           
 
 	{# Cart Ajax #}
 
-	{% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart',modal_class: 'cart ' ~ tabnav_modal_classes, modal_position: modal_cart_position_mobile_val, modal_position_desktop: 'right', modal_transition: 'slide', modal_width: 'docked-md', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel', modal_header_title: true, modal_mobile_full_screen: modal_mobile_full_screen_val, modal_form_hook: 'cart-form', data_component:'cart', desktop_overlay_only: modal_with_desktop_only_overlay_val } %}
+	{% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart',modal_class: 'cart ' ~ tabnav_modal_classes, modal_position: 'center', modal_position_desktop: 'center', modal_transition: 'slide', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel', modal_header_title: true, modal_mobile_full_screen: modal_mobile_full_screen_val, modal_form_hook: 'cart-form', data_component:'cart', desktop_overlay_only: modal_with_desktop_only_overlay_val } %}
 		{% block modal_head %}
+			<iconify-icon icon="solar:bag-5-linear"></iconify-icon>
 			{% block page_header_text %}{{ "Carrito de Compras" | translate }}{% endblock page_header_text %}
 		{% endblock %}
 		{% block modal_body %}
